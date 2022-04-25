@@ -166,12 +166,14 @@ void acceptOrder(vector<MenuItem> &m)
 };
 
 
-int main() 
+int main()
 {
+  MenuItem m;
+  
   vector<MenuItem> wholeMenu; 
-  populateMenu(wholeMenu); //put some default values in the menu
-  showMenu(wholeMenu); //print the current data of the menu on screen 
-  acceptOrder(wholeMenu); 
+  m.populateMenu(wholeMenu); //put some default values in the menu
+  m.showMenu(wholeMenu); //print the current data of the menu on screen 
+  m.acceptOrder(wholeMenu); 
   
   return 0; 
 }
