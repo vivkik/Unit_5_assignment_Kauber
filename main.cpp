@@ -7,6 +7,7 @@
 using namespace std; 
 
 class MenuItem
+{
   private: 
     string name;
     double itemCost; 
@@ -20,8 +21,8 @@ class MenuItem
       name = "";
       itemCost = 0.0;
       desc = "";
-      addLetter = '';
-      removeLetter = '';
+      addLetter = '\0';
+      removeLetter = '\0';
       count = 0;
     }
     void setName(string n) 
@@ -48,9 +49,6 @@ class MenuItem
       {return removeLetter;}
     int getCount()const 
       {return count;}
-    
-
-};
 
 //function definitions
 void populateMenu(vector<MenuItem> &entireMenu)
@@ -164,6 +162,9 @@ void acceptOrder(vector<MenuItem> &m)
   //handle the tip process here
   //handle reciept generation here
 }
+
+};
+
 
 int main() 
 {
