@@ -1,6 +1,7 @@
 //A  Restaurant Project Struct style Dr_T Dr. Tyson McMillan 10-2-2019
 
 #include <iostream>
+#include <unistd.h>
 #include<string>
 #include<vector>
 #include<iomanip>
@@ -71,7 +72,7 @@ void populateMenu(vector<MenuItem> &entireMenu)
   entireMenu.push_back(Item6); //add to the end of list the Item6
   entireMenu.push_back(Item7); //add to the end of list the Item7
 
-  vector<string> defaultMenuNames = {"Green Tea", "Burrito", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"}; 
+  vector<string> defaultMenuNames = {"Edamame", "Gyoza", "Takoyaki", "Kushiage", "Futomaki", "Udon", "Uji Tea"}; 
   vector<char> defaultAddLetters = {'A', 'B', 'C', 'D', 'E', 'F', 'G'}; 
   vector<char> defaultRemoveLetters = {'a', 'b', 'c', 'd', 'e', 'f', 'g'}; 
 
@@ -92,17 +93,25 @@ void populateMenu(vector<MenuItem> &entireMenu)
 void showMenu(vector<MenuItem> &m)
 {
   cout << fixed << setprecision(2);//set doubles to 2 decimal places
-  cout << "DrT's Effcient Menu" << endl; 
-  cout << "ADD  \tNAME \t COST \tREMOVE\tCOUNT\tDESC"<<endl; 
+  cout << "OSAKA SOUL" << endl; 
+  cout << "ADD    NAME \t  COST \tREMOVE\tCOUNT\tDESC"<<endl; 
   for(int i = 0; i < m.size(); i++)
   {
-    cout << m[i].addLetter << ")" << setw(10) << m[i].name 
+    cout << m[i].addLetter << ")" << setw(12) << m[i].name 
     << setw(5) << "$" << m[i].itemCost << setw(5) << "(" << m[i].removeLetter
     << ")" << setw(7) << m[i].count << setw(13) << m[i].desc 
     <<endl; 
   }
 
 }
+
+/*void printReceipt(vector<MenuItem> &m, double subtotal)
+{
+  cout << fixed << setprecision(2);//set doubles to 2 decimal places
+  cout << "RECEIPT:" << endl; 
+  
+}
+*/
 
 void acceptOrder(vector<MenuItem> &m)
 {
@@ -111,7 +120,7 @@ void acceptOrder(vector<MenuItem> &m)
 
   do
   {
-    cout << "\nPlease choose an item (x to Exit): ";
+    cout << "\nPlease choose an item (X to end and Checkout): ";
     cin >> option; 
 
     for(int i=0; i < m.size(); i++)
@@ -157,12 +166,38 @@ void acceptOrder(vector<MenuItem> &m)
               }  
             }
     }
-  }while(option != 'x' && option != 'X'); 
-  cout << "\nThank you for placing your order." << endl; 
-  //handle the tip process here
-  //handle reciept generation here
-}
+  }while(option != 'x' && option != 'X');
+  double sugGrat = subtotal * .2;
+  double userGrat; 
+  double taxRate = 1.0625;
+  double taxTotal = subtotal *taxRate; 
+  int payChoice; 
 
+  cout << "\nTotal after tax: $" << taxTotal <<endl;
+  cout << "Would you like to place a gratuity?" << endl;
+  cout << "Suggested tip (20%): $" << sugGrat << endl; 
+  cout << "\nPlease enter tip amount: " << endl; 
+  cin >> userGrat;
+  cout << "\nTOTAL: $" << userGrat + taxTotal <<endl; 
+  cout << "\nHow would you like to pay? Enter (1) for Cash (2) for Card" << endl; 
+  cin >> payChoice; 
+    if(payChoice == 1)
+      {
+        double tender; 
+        double change; 
+        cout << "Enter the cash amount paid: ";
+        cin >> tender; 
+          if(tender >= (userGrat + taxTotal))
+            change = tender - (userGrat+taxTotal); 
+            cout << "Your change is: $" << change << endl; 
+      }
+    else if(payChoice == 2)
+      {
+        cout << "Please swipe your Card: " <<endl; 
+        sleep(3);
+        cout << "Payment Processed";
+      }
+  }
 };
 
 
