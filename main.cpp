@@ -105,13 +105,6 @@ void showMenu(vector<MenuItem> &m)
 
 }
 
-/*void printReceipt(vector<MenuItem> &m, double subtotal)
-{
-  cout << fixed << setprecision(2);//set doubles to 2 decimal places
-  cout << "RECEIPT:" << endl; 
-  
-}
-*/
 
 void acceptOrder(vector<MenuItem> &m)
 {
