@@ -76,7 +76,7 @@ int main()
      }
       }
       while (userChoice != 'n' && userChoice != 'N');
-      cout << "Your Loss ¯_(ツ)_/¯";
+      cout << "Your Loss ¯\\_(ツ)_/¯";
 
   return 0; 
 }
@@ -239,6 +239,7 @@ void printReceipt(vector<MenuItem> &m, double subtotal, double sugGrat, double u
   
   outfile << fixed << setprecision(2);//set doubles to 2 decimal places
   outfile<< "RECEIPT:" << endl;
+  cout << "\n\x1b[32;1m*** RECEIPT: ***\x1b[0m\n" << endl; 
   for (int i = 0; i < m.size(); ++i)
     {
       outfile <<m[i].getName() << " " << m[i].getitemCost() << " x " << m[i].getCount() << " = " << m[i].getCount() * m[i].getitemCost() << endl; 
