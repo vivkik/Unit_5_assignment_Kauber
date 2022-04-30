@@ -1,2 +1,14 @@
 RECEIPT:
-Subtotal: 12.00
+Edamame 3.00 x 6 = 18.00
+Gyoza 4.00 x 0 = 0.00
+Takoyaki 5.00 x 0 = 0.00
+Kushiage 6.00 x 0 = 0.00
+Futomaki 7.00 x 0 = 0.00
+Udon 8.00 x 0 = 0.00
+Uji Tea 9.00 x 0 = 0.00
+
+Subtotal: 18.00
+Total after tax: 19.12
+Added Gratuity: 3.00
+
+TOTAL: 22.12

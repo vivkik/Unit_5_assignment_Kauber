@@ -1,4 +1,4 @@
-//A  Restaurant Project Struct style Dr_T Dr. Tyson McMillan 10-2-2019
+//Osaka Soul Menu by William Kauber 
 
 #include <iostream>
 #include <unistd.h>
@@ -60,10 +60,23 @@ void acceptOrder(vector<MenuItem> &);
 
 int main()
 {
-  vector<MenuItem> wholeMenu; 
-  populateMenu(wholeMenu); //put some default values in the menu
-  showMenu(wholeMenu); //print the current data of the menu on screen 
-  acceptOrder(wholeMenu); 
+  char userChoice; 
+   system("clear"); 
+  do
+    {
+    cout << "Welcome to Osaka Soul, would you like to place an order? (Y/N)";
+   cin >> userChoice; 
+    if(userChoice == 'y' || userChoice == 'Y')
+    {
+      system("clear"); 
+          vector<MenuItem> wholeMenu; 
+          populateMenu(wholeMenu); //put some default values in the menu
+          showMenu(wholeMenu); //print the current data of the menu on screen 
+          acceptOrder(wholeMenu); 
+     }
+      }
+      while (userChoice != 'n' && userChoice != 'N');
+      cout << "Your Loss ¯_(ツ)_/¯";
 
   return 0; 
 }
@@ -112,13 +125,17 @@ void populateMenu(vector<MenuItem> &m)
 void showMenu(vector<MenuItem> &m)
 {
   cout << fixed << setprecision(2);//set doubles to 2 decimal places
-  cout << "OSAKA SOUL" << endl; 
-  cout << "ADD    NAME \t  COST \tREMOVE\tCOUNT\tDESC"<<endl; 
+  cout << "\n\x1b[47;31m                    \x1b[0m\n"; 
+  cout << "\x1b[47;31m  \\ | | | | | | /   \x1b[0m\n"; 
+  cout << "\x1b[47;31m -   OSAKA SOUL   - \x1b[0m\n"; 
+  cout << "\x1b[47;31m  / | | | | | | \\   \x1b[0m\n"; 
+  cout << "\x1b[47;31m                    \x1b[0m\n"; 
+  cout << "\n\x1b[31;1mADD    NAME \t COST \t  REMOVE\tCOUNT\t  DESCRIPTION\x1b[0m"<<endl; 
   for(int i = 0; i < m.size(); i++)
   {
     cout << m[i].getaddLetter() << ")" << setw(12) << m[i].getName() 
     << setw(5) << "$" << m[i].getitemCost()<< setw(5) << "(" << m[i].getremoveLetter()
-    << ")" << setw(7) << m[i].getCount() << setw(13) << m[i].getDesc() 
+    << ")" << setw(7) << m[i].getCount() << setw(20) << m[i].getDesc() 
     <<endl; 
   }
 
@@ -211,7 +228,7 @@ void acceptOrder(vector<MenuItem> &m)
       {
         cout << "Please swipe your Card: " <<endl; 
         sleep(3);
-        cout << "Payment Processed";
+        cout << "Payment Processed" <<endl; 
       }
   printReceipt(m,subtotal, sugGrat,userGrat, taxRate, taxTotal, payChoice); 
   }
@@ -224,9 +241,21 @@ void printReceipt(vector<MenuItem> &m, double subtotal, double sugGrat, double u
   outfile<< "RECEIPT:" << endl;
   for (int i = 0; i < m.size(); ++i)
     {
-      cout <<m[i].getName() << " " << m[i].getitemCost() << " x " << m[i].getCount() << "=" << m[i].getCount() * m[i].getitemCost() << endl; 
+      outfile <<m[i].getName() << " " << m[i].getitemCost() << " x " << m[i].getCount() << " = " << m[i].getCount() * m[i].getitemCost() << endl; 
     }
-  outfile << "Subtotal: " << subtotal;
+  for (int i = 0; i < m.size(); ++i)
+    {
+      cout <<m[i].getName() << " " << m[i].getitemCost() << " x " << m[i].getCount() << " = " << m[i].getCount() * m[i].getitemCost() << endl; 
+    }
+  cout << "\nSubtotal: " << subtotal << endl; 
+  cout << "Total after tax: " << taxTotal << endl; 
+  cout << "Added Gratuity: " << userGrat << endl; 
+  cout << "\nTOTAL: " << taxTotal + userGrat << endl; 
+  outfile << "\nSubtotal: " << subtotal << endl; 
+  outfile << "Total after tax: " << taxTotal << endl; 
+  outfile << "Added Gratuity: " << userGrat << endl; 
+  outfile << "\nTOTAL: " << taxTotal + userGrat << endl; 
+  
   
   outfile.close();
   }
